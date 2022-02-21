@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;700;900&display=swap');
+
+#app {
+  @apply min-h-screen flex flex-col;
+}
+
+input {
+  @apply bg-transparent outline-none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1160px !important;
+}
