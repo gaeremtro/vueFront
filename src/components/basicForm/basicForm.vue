@@ -15,7 +15,9 @@
 
 
 </template>
+
 <script setup>
+
 import { ref, watch } from "vue";
 
 const formData = ref({
@@ -25,6 +27,7 @@ const formData = ref({
     password: "",
     confirmPassword: "",
 });
+
 const formError = ref({
     name: "",
     surname: "",
@@ -46,10 +49,12 @@ function submited() {
     let correct = !Object.values(formError.value).some((value) => value !== "");
     if (correct) alert("toda la informacion del formulario es correcta, Gracias!");
 }
+
 //Set any error
 const setError = (prop, value) => {
     formError.value[prop] = value;
 };
+
 //Validates an email
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -64,9 +69,9 @@ watch(
     },
     { deep: true }
 );
+
 </script>
+
 <style lang="scss" scoped>
-.form-holder {
-    @apply w-full  bg-yellow-500 items-center;
-}
+
 </style>
