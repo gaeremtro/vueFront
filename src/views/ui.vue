@@ -29,18 +29,12 @@ navbarVue
     BaseHeaderDefault(size="h4" nameIcon="mdiAccount") Header h4 
 
 </template>
-<script >
-export default {
-  setup() {
-    return {};
-  },
-  data: () => ({
-    exampleInputText: '',
-    textTwo:''
-  })
-};
-</script>
+
 <script setup>
-import navbarVue from '@/components/navbar/navbar.vue';
+  import navbarVue from "@/components/navbar/navbar.vue";
+  
+  const exampleInputText = "";
+  const textTwo = "";
+
 </script>
 <style lang="scss" scoped></style>

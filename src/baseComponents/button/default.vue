@@ -1,28 +1,30 @@
 <template lang="pug">
-.default-button(:class="[color, size, {'disabled': disabled}, {'buttonIcon': !!nameIcon}]")
+.default-button(
+  :class="[color, size, { disabled: disabled }, { buttonIcon: !!nameIcon }]"
+)
   slot
-  BaseCustomIcon.icon(v-if="!!nameIcon" :nameIcon="nameIcon")
+  BaseCustomIcon.icon(v-if="!!nameIcon", :nameIcon="nameIcon")
 </template>
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps } from "vue";
 // eslint-disable-next-line
 const props = defineProps({
   color: {
     type: String,
-    default: 'primary'
+    default: "primary",
   },
   size: {
     type: String,
-    default: 'normal'
+    default: "normal",
   },
   disabled: {
     type: Boolean,
-    default: false
+    default: false,
   },
   nameIcon: {
     type: String,
-    default: null
-  }
+    default: null,
+  },
 });
 </script>
 <style lang="scss" scoped>
@@ -65,8 +67,8 @@ const props = defineProps({
       @apply bg-green-700;
     }
   }
- &.ternary {
-    @apply bg-white shadow-gray-200 text-black;
+  &.ternary {
+    @apply bg-white  text-black;
 
     &:hover {
       @apply bg-black text-white;

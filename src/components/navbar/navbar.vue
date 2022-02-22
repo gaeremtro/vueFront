@@ -3,10 +3,11 @@
     .container.nav-holder
         .logo
         .links-wrap
-            BaseAnchorDefault.lin Home
-            BaseAnchorDefault.lin(to='/ui') Ui
-            BaseAnchorDefault.lin(to='/about') About
-        BaseButtonDefault SignIn
+            BaseAnchorDefault.link Home
+            BaseAnchorDefault.link(to='/ui') Ui
+            BaseAnchorDefault.link(to='/about') About
+            BaseAnchorDefault.link(to='/form') Form
+        BaseButtonDefault(color='ternary') SignIn
 
 
 </template>
@@ -20,12 +21,12 @@
     @apply flex justify-between items-center h-16
 }
 .logo {
-    @apply h-10 w-28 bg-black;
+    @apply h-10 w-28 min-w-max mr-4 bg-black;
 }
 .links-wrap {
-    @apply flex justify-start w-4/6 items-center;
+    @apply  flex justify-center  md:justify-start md:w-4/6  items-center;
 }
-.lin{
+.link{
     @apply mx-2
 }
 </style>

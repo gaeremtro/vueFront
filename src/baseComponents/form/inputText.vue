@@ -5,9 +5,10 @@
     input(
       :value="modelValue",
       @input="$emit('update:modelValue', $event.target.value)",
-      type="text",
+      :type='type',
       :placeholder="placeholder",
-      :disabled="'disabled' ? disabled : false"
+      :disabled="'disabled' ? disabled : false",
+
     )
   .error-text(v-if="error") {{ error }}
 </template>
@@ -35,6 +36,11 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    type: {
+        type:String,
+        default:'text',
+    }
+    
 });
 </script>
 <style lang="scss" scoped>
