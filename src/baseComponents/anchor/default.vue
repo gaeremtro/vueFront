@@ -18,7 +18,6 @@ const props = defineProps({
 //const { to } = toRefs(props)
 
 const router = useRouter();
-watch( router.currentRoute ,(route)=>console.log(route),{inmmediate:true} )
 
 </script>
 <style lang="scss" scoped>

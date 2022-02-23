@@ -15,7 +15,7 @@
 <style lang="scss" scoped>
 
 .navbar {
-    @apply w-full  bg-yellow-500 items-center;
+    @apply w-full  bg-red-800 items-center;
 }
 .nav-holder {
     @apply flex justify-between items-center h-16
