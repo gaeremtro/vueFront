@@ -57,7 +57,9 @@ const props = defineProps({
     border-bottom: 48px;
     border-left:48px;
     box-shadow: 10px 11px 13px -7px rgba(0,0,0,0.37);
-    @apply h-10  border-b-white border-solid border-l-transparent fixed  z-20;
+    background-clip: border-box;
+    border-left-color: rgba(0,0,0,0);
+    @apply h-10  border-b-white border-solid border-opacity-0 fixed  z-20;
 }
 .top-rest{
     @apply  bg-white w-full h-12; 
