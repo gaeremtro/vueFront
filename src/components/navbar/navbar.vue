@@ -1,5 +1,9 @@
 <template lang="pug">
+popupBaseVue(:open="open")
+        loginVue(v-if='user.isOpenLogin')
+        signUpVue(v-if='user.isOpenRegister')
 .navbar
+    
     .container.nav-holder
         .logo
         .links-wrap
@@ -7,11 +11,33 @@
             BaseAnchorDefault.link(to='/ui') Ui
             BaseAnchorDefault.link(to='/about') About
             BaseAnchorDefault.link(to='/form') Form
-        BaseButtonDefault(color='ternary') SignIn
+        BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="user.openLogin") Login
+        BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="user.openRegister") Register
+        BaseButtonDefault(v-if='user.isLogged' color='ternary' @click="user.loggout") LogOut
 
 
 </template>
-<script setup></script>
+<script setup>
+
+import userStore from '../../store/userStore'
+import popupBaseVue from '../popup/popupBase.vue';
+import loginVue from '../popup/login.vue';
+import signUpVue from '../popup/signUp.vue';
+import { computed, ref } from 'vue';
+
+
+
+const user = userStore();
+
+const open = computed (() => user.isOpenLogin || user.isOpenRegister)
+
+
+
+
+
+
+
+</script>
 <style lang="scss" scoped>
 
 .navbar {

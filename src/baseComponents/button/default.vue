@@ -61,10 +61,10 @@ const props = defineProps({
     }
   }
   &.secondary {
-    @apply bg-green-500 shadow-green-500/50;
+    @apply bg-red-800 shadow-red-800/50;
 
     &:hover {
-      @apply bg-green-700;
+      @apply bg-red-900;
     }
   }
   &.ternary {

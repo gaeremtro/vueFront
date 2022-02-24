@@ -1,10 +1,9 @@
-<template>
-<navbarVue></navbarVue>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+<template lang="pug">
+navbarVue
+.about
+    h1 This is an about page
 </template>
 <script setup>
-
 import navbarVue from "../components/navbar/navbar.vue";
+
 </script>

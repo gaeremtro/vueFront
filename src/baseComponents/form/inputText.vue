@@ -50,10 +50,10 @@ defineProps({
     .input {
         @apply  outline-gray-300 outline-1 outline rounded-md; //initual
         &:hover{
-          @apply outline-green-400; //hovered
+          @apply outline-red-800; //hovered
         }
         &:focus-within {
-            @apply outline-green-400 outline-2; //focused
+            @apply outline-red-800 outline-2; //focused
         }
         input {
             @apply w-full py-2 px-4 outline-none;

@@ -1,7 +1,7 @@
 <template lang="pug">
 .header(:class="[size]") 
   BaseCustomIcon.icon(v-if="!!nameIcon" :nameIcon="nameIcon")
-  .text
+  .text(:class="[align]")
     slot
 </template>
 <script setup>
@@ -14,10 +14,24 @@ defineProps({
   nameIcon: {
     type: String,
     default: null
+  },
+  align:{
+    type:String,
+    default:'start'
   }
+
 });
 </script>
 <style lang="scss" scoped>
+.text {
+  @apply w-full;
+  &.center {
+    @apply text-center;
+  }
+  &.end {
+    @apply text-right;
+  }
+}
 .header {
   @apply font-bold text-gray-700 flex items-center;
 
