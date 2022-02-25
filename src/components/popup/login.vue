@@ -10,14 +10,17 @@
 .flex.pt-10
     .flex.justify-around.w-full
         BaseButtonDefault(@click="handleLogin"  color='secondary' ) Signin
-        BaseButtonDefault(@click="handleClose" color='secondary') Close
+        BaseButtonDefault(@click="closeModal" color='secondary') Close
     
 
 </template>
 <script setup>
 
 import useStore from '@/store/userStore';
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
+
+
+const closeModal = inject('closeModals');
 
 const store = useStore();
 
@@ -33,9 +36,7 @@ function handleLogin () {
     
 }
 
-function handleClose () {
-    store.close()
-}
+
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

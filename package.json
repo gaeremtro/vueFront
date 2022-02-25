@@ -12,6 +12,7 @@
     "@animxyz/vue3": "^0.6.6",
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.5.95",
+    "@vueuse/core": "^7.6.2",
     "axios": "^0.24.0",
     "core-js": "^3.21.1",
     "lodash": "^4.17.21",

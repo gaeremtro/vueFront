@@ -33,14 +33,14 @@ defineProps({
   }
 }
 .header {
-  @apply font-bold text-gray-700 flex items-center;
+  @apply font-bold text-gray-700 flex items-center ;
 
   .icon {
     @apply mr-1;
   }
 
   &.h1 {
-    @apply text-4xl;
+    @apply text-4xl ;
     .icon {
       @apply w-8 h-8;
     }

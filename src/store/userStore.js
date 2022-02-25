@@ -14,25 +14,9 @@ const useStore = defineStore("userStore", {
             surname:'',
             isAdmin: false,
             isLogged: false,
-            isOpenLogin:false,
-            isOpenRegister:false,
         };
     },
     actions: {
-
-        close(){
-            this.isOpenLogin = false;
-            this.isOpenRegister = false;
-        },
-        openLogin() {
-            this.isOpenLogin = true;
-            this.isOpenRegister = false;
-        },
-        openRegister(){
-            
-            this.isOpenLogin = false;
-            this.isOpenRegister = true;
-        },
 
         loggin(email,pass) {
             let userFound = users.filter((user)=> user.email === email && user.pass === pass);
@@ -55,7 +39,6 @@ const useStore = defineStore("userStore", {
                 this.email = email;
                 this.surname = surname;
                 this.isLogged = true;
-                this.visible = false;
                 users.push({name,email,surname,pass:password})
                 this.close(); // closing the  popup
             }else alert('this user is already registered');

@@ -1,10 +1,11 @@
 <template lang="pug">
 
-.container
+.container.test-scroll.invisible-scrollbar
 
-  .flex.mt-4.gap-4 
+  .input-holder
     BaseFormInputText(v-model="formData.name" @click='setError("name", "")', label="Name", placeholder="Antonio", :error="formError.name" )
-    BaseFormInputText(v-model="formData.surname" @click='setError("surname", "")' label="Surname" placeholder="Perales" :error="formError.surname"  )
+    .small-margin-input
+      BaseFormInputText(v-model="formData.surname" @click='setError("surname", "")' label="Surname" placeholder="Perales" :error="formError.surname"  )
   .full-w.mt-4
     BaseFormInputText(v-model="formData.email" @click='setError("email", "")' label="E-mail" placeholder="antonioperales@mail.com" :error="formError.email"  )
   .full-w.mt-4
@@ -12,9 +13,10 @@
   .full-w.mt-4
     BaseFormInputText(v-model="formData.confirmPassword" @click='setError("confirmPassword", "")' label="Confirm your password" placeholder="XXXXX" :error="formError.confirmPassword" type="password")
 
-  .flex.justify-between.itens-center.mt-6
-    BaseButtonDefault(@click="emitClose") Cerrar
-    BaseButtonDefault(@click="submited") {{buttonName ? buttonName :'Check form'}}
+  .buttons-holder
+    BaseButtonDefault(@click="submited" color='secondary') {{buttonName ? buttonName :'Check form'}}
+    .small-margin
+      BaseButtonDefault(@click="emitClose" color='secondary') Cerrar
 
 </template>
 
@@ -94,5 +96,36 @@ watch(
     { deep: true }
 );
 </script>
-*/
-<style lang="scss" scoped></style>
+
+<style lang="scss" scoped>
+.test-scroll{
+ 
+  max-height: 55vh;
+  @apply overflow-y-scroll ;
+}
+ .invisible-scrollbar{
+  &::-webkit-scrollbar {
+    @apply w-1 bg-slate-200 sm:hidden;
+  }
+  &::-webkit-scrollbar-thumb  {
+     @apply bg-red-800
+  }
+
+}
+.buttons-holder {
+   
+    @apply block sm:flex justify-between items-center mt-6 gap-4;
+}
+.input-holder {
+   
+    @apply block sm:flex  items-center mt-6 gap-4;
+}
+.small-margin-input{
+  @apply mt-4 sm:mt-0 w-full
+}
+
+.small-margin{
+  @apply mt-4 sm:mt-0
+}
+
+</style>

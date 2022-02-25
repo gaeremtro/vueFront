@@ -1,38 +1,57 @@
 <template lang="pug">
-popupBaseVue(:open="open")
-        loginVue(v-if='user.isOpenLogin')
-        signUpVue(v-if='user.isOpenRegister')
+popupBaseVue(:open="open" :heigth='user.openModalLogin? "sm:w-80 max-w-80": "sm:w-96 max-w-96 "' )
+    loginVue(v-if='openModalLogin')
+    signUpVue(v-if='openModalRegister')
 .navbar
     
     .container.nav-holder
-        .logo
+        .w-30
+            .logo
+           
         .links-wrap
             BaseAnchorDefault.link Home
             BaseAnchorDefault.link(to='/ui') Ui
             BaseAnchorDefault.link(to='/about') About
             BaseAnchorDefault.link(to='/form') Form
-        BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="user.openLogin") Login
-        BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="user.openRegister") Register
-        BaseButtonDefault(v-if='user.isLogged' color='ternary' @click="user.loggout") LogOut
+        .buttons
+            BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="openLogin" ) Login
+            BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="openRegister") Register
+            BaseButtonDefault(v-if='user.isLogged' color='ternary' @click="user.loggout") LogOut
 
 
 </template>
-<script setup>
+<script setup> 
 
 import userStore from '../../store/userStore'
 import popupBaseVue from '../popup/popupBase.vue';
 import loginVue from '../popup/login.vue';
 import signUpVue from '../popup/signUp.vue';
-import { computed, ref } from 'vue';
-
-
+import { computed, ref, provide } from 'vue';
 
 const user = userStore();
 
-const open = computed (() => user.isOpenLogin || user.isOpenRegister)
+const openModalLogin = ref(false);
+
+const openModalRegister = ref(false);
+
+const handleClose = ()=>{
+    openModalLogin.value = false;
+    openModalRegister.value = false;
+}
+
+const open = computed (() => openModalLogin.value || openModalRegister.value);
 
 
 
+const openLogin =() => {
+openModalLogin.value = true;
+}
+const openRegister = () => {
+    openModalRegister.value = true;
+}
+
+
+provide('closeModals', handleClose);
 
 
 
@@ -47,12 +66,15 @@ const open = computed (() => user.isOpenLogin || user.isOpenRegister)
     @apply flex justify-between items-center h-16
 }
 .logo {
-    @apply h-10 w-28 min-w-max mr-4 bg-black;
+    @apply h-10 w-24 min-w-fit  mr-4 bg-black;
 }
 .links-wrap {
-    @apply  flex justify-center  md:justify-start md:w-4/6  items-center;
+    @apply  flex justify-center  md:justify-start md:w-full  items-center;
 }
 .link{
     @apply mx-2
+}
+.buttons {
+    @apply gap-3 flex
 }
 </style>

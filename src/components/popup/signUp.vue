@@ -1,26 +1,24 @@
 <template lang="pug">
-h3 Register new Account
-h4 When you register a new account.
+.text-center
+    BaseHeaderDefault(size='h2', align='center') Register new Account
+.pt-4
+    p  Once you are register, you can inmediatly convert any format file to another.
 .flex.justify-between
-    basicForm( buttonName='Custom Action' v-on:handle-action='handleRegister' v-on:handle-close='handleClose')
+    basicForm( buttonName='Register' v-on:handle-action='handleRegister' v-on:handle-close='closeModal')
 
 </template>
 <script setup>
 
 import useStore from '@/store/userStore';
 import basicForm from "@/components/basicForm/basicForm.vue"
-import { ref,def } from 'vue';
+import { inject } from 'vue';
 
-
+const closeModal = inject('closeModals'); 
 const store = useStore();
 
 function handleRegister (formData) {
     store.register(formData.name,formData.surname, formData.email,formData.password)
     
-}
-
-function handleClose () {
-    store.close()
 }
 
 function validateEmail(email) {
