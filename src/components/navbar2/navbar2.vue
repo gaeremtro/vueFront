@@ -1,7 +1,4 @@
 <template lang="pug">
-//- popupBaseVue(:open="open" :heigth='user.openModalLogin? "sm:w-80 max-w-80": "sm:w-96 max-w-96 "' )
-//-     loginVue(v-if='openModalLogin')
-//-     signUpVue(v-if='openModalRegister')
 .navbar
 
   .container.nav-holder
@@ -17,38 +14,59 @@
       BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="openLogin" ) Login
       BaseButtonDefault(v-if='!user.isLogged' color='ternary' @click="openRegister") Register
       BaseButtonDefault(v-if='user.isLogged' color='ternary' @click="user.loggout") LogOut
-Login(:openModal="openModalLogin")
-SignUp(:openModal="openModalRegister")
+
+popupBaseVue(:open="showModal" :heigth='heigth')
+  component(:is="compontentSelected")
 </template>
 <script setup>
-
+import popupBaseVue from '../popup/popupBase.vue';
 import userStore from '../../store/userStore'
-import { ref, provide } from 'vue';
-import Login from '../popup/login.vue';
-import SignUp from '../popup/signUp.vue';
+import { ref, provide, computed } from 'vue';
+import loginComponent from './login.vue';
+import signUp from './signup.vue';
+import remember from './remember.vue';
+
+const components = {
+  login: loginComponent,
+  signUp,
+  remember
+}
 
 const user = userStore();
-
-const openModalLogin = ref(false);
-const openModalRegister = ref(false);
+const showModal = ref(false)
+const componentName = ref('login')
 
 const handleClose = () => {
-  openModalLogin.value = false;
-  openModalRegister.value = false;
+  showModal.value = false
 }
 
 const openLogin = () => {
-  openModalLogin.value = true;
+  showModal.value = true;
+  componentName.value = 'login';
 }
 const openRegister = () => {
-  openModalRegister.value = true;
+  showModal.value = true;
+  componentName.value = 'signUp';
+}
+const openRemember = () => {
+  showModal.value = true;
+  componentName.value = 'remember';
 }
 
+const compontentSelected = computed(() => {
+  return components[componentName.value]
+})
+
+
+const heigth = computed(() => {
+  if (componentName.value == 'signUp') return 'sm:w-96 max-w-96'
+  return "sm:w-80 max-w-80"
+})
 
 provide('closeModals', handleClose);
-
-
-
+provide('openLogin', openLogin)
+provide('openRegister', openRegister)
+provide('openRemember', openRemember)
 
 </script>
 <style lang="scss" scoped>
